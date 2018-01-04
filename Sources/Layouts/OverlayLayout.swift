@@ -42,11 +42,12 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
                 overlay: [Layout] = [],
                 alignment: Alignment = .fill,
                 viewReuseId: String? = nil,
+                viewMaker: (() -> V)? = nil,
                 config: ((V) -> Void)? = nil) {
         self.primary = primary
         self.background = background
         self.overlay = overlay
-        super.init(alignment: alignment, flexibility: primary.flexibility, viewReuseId: viewReuseId, config: config)
+        super.init(alignment: alignment, flexibility: primary.flexibility, viewReuseId: viewReuseId, viewMaker: viewMaker, config: config)
     }
 
 }

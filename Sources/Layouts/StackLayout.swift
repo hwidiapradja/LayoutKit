@@ -40,6 +40,7 @@ open class StackLayout<V: View>: BaseLayout<V> {
                 flexibility: Flexibility? = nil,
                 viewReuseId: String? = nil,
                 sublayouts: [Layout],
+                viewMaker: (() -> V)? = nil,
                 config: ((V) -> Void)? = nil) {
         
         self.axis = axis
@@ -47,7 +48,7 @@ open class StackLayout<V: View>: BaseLayout<V> {
         self.distribution = distribution
         self.sublayouts = sublayouts
         let flexibility = flexibility ?? StackLayout.defaultFlexibility(axis: axis, sublayouts: sublayouts)
-        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewMaker: viewMaker, config: config)
     }
 }
 

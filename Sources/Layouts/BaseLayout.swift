@@ -26,14 +26,18 @@ open class BaseLayout<V: View> {
     /// A configuration block that is run on the main thread after the view is created.
     open let config: ((V) -> Void)?
 
+    /// A block to initialise a view that requires special one-time configuration.
+    open let viewMaker: (() -> V)?
+    
     open var needsView: Bool {
         return config != nil
     }
 
-    public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, config: ((V) -> Void)?) {
+    public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, viewMaker: (() -> V)? = nil, config: ((V) -> Void)?) {
         self.alignment = alignment
         self.flexibility = flexibility
         self.viewReuseId = viewReuseId
+        self.viewMaker = viewMaker
         self.config = config
     }
 
@@ -42,6 +46,6 @@ open class BaseLayout<V: View> {
     }
 
     open func makeView() -> View {
-        return V()
+        return viewMaker?() ?? V()
     }
 }
