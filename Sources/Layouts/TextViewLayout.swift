@@ -60,6 +60,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                             layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
+                            viewMaker: (() -> TextView)? = nil,
                             config: ((TextView) -> Void)? = nil) {
         self.init(text: .unattributed(text),
                   font: font,
@@ -68,6 +69,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                   layoutAlignment: layoutAlignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
+                  viewMaker: viewMaker,
                   config: config)
     }
 
@@ -78,6 +80,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                             layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
+                            viewMaker: (() -> TextView)? = nil,
                             config: ((TextView) -> Void)? = nil) {
         self.init(text: .attributed(attributedText),
                   font: font,
@@ -86,6 +89,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                   layoutAlignment: layoutAlignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
+                  viewMaker: viewMaker,
                   config: config)
     }
 
