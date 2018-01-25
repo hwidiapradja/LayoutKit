@@ -30,7 +30,7 @@ open class BaseLayout<V: View> {
     open let viewMaker: (() -> V)?
     
     open var needsView: Bool {
-        return config != nil
+        return config != nil || viewMaker != nil
     }
 
     public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, viewMaker: (() -> V)? = nil, config: ((V) -> Void)?) {
